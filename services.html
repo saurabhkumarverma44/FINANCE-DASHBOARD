@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services</title>
+    <style>
+        body {
+            background-color: #000;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+        ::-webkit-scrollbar /*chrome,safari,edge*/
+            {
+                display: none;
+            }
+            html /*firefox*/
+            {
+                scrollbar-width: none;
+            }
+            body /*for ie and edge*/
+            {
+                -ms-overflow-style: none;
+            }
+            nav {
+overflow: hidden;
+width: 35%;
+margin-left: auto;
+justify-content: center;
+}
+nav ul {
+list-style: none;
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex;
+}
+nav ul li {
+flex: 1;
+text-align: center;
+}
+nav ul li a {
+display: block;
+padding: 15px;
+color: white;
+text-decoration: none;
+font-size: 16px;
+font-weight: bold;
+transition: background-color 0.3s ease;
+}
+nav ul li a:hover, nav ul li a:focus {
+background-color: #555;
+}
+nav ul li a {
+transition: background-color 0.3s ease;
+}
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .container5
+            {
+                display: flex; 
+                align-items: center; 
+                gap: 25px;
+            }
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            padding: 50px;
+        }
+        .tool {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            transition: transform 0.3s;
+            text-align: left;
+        }
+        .tool img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .tool:hover img {
+            transform: scale(1.05);
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+        .button {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid black;
+            margin-top: 10px;
+            transition: all 0.3s ease-in-out;
+            flex: 1;
+            text-align: center;
+        }
+        .small-image 
+            {
+                height: 40px; 
+                width: 75px; 
+                border-radius: 15px;
+            }
+        .button:hover {
+            background: black;
+            color: white;
+            border: 2px solid white;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container5">
+        <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1520607162513-77705c0f0d4a.jpeg" class="small-image">
+        <h3>Finance</h3>
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:5501/project.html">Home</a></li>
+                <li><a href="http://127.0.0.1:5501/about.html">About</a></li>
+                <li><a href="http://127.0.0.1:5501/services.html">Services</a></li>
+                <li><a href="http://127.0.0.1:5501/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <h1 style="font-size: 60px">Our Services</h1>
+    
+    <div class="container">
+        <div class="tool">
+            <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1531482615713-2afd69097998.jpeg" alt="Budget Planner">
+            <h2>Rs. 5000<br>Budget Planner</h2>
+            <p>A powerful tool to help you plan your budget like a pro.</p>
+            <div class="button-container">
+                <button class="button" onclick="openDetails('Budget Planner', 'Budget planner services assist individuals and businesses in creating and managing financial plans by setting income and expense limits to achieve financial stability. These services typically offer tools for income tracking, expense categorization, savings goal setting, and real-time budget analysis. Many budget planners integrate with bank accounts and financial apps to automate transaction tracking and provide insightful reports. Users can allocate funds to different categories, receive alerts for overspending, and adjust budgets based on changing financial needs. Some advanced platforms use AI-driven recommendations to optimize savings and suggest better financial strategies. With features like bill reminders, debt payoff tracking, and customizable financial goals, budget planners help users make informed decisions and stay financially disciplined.')">Details</button>
+                <button class="button" onclick="openForm('Budget Planner', 5000)">Buy Now</button>
+            </div>
+        </div>
+        <div class="tool">
+            <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1579621970588-a35d0e7ab9b6.jpeg" alt="Expense Tracker">
+            <h2>Rs. 1500<br>Expense Tracker</h2>
+            <p>Keep tabs on your spending with our easy-to-use tracker.</p>
+            <div class="button-container">
+                <button class="button" onclick="openDetails('Expense Tracker', 'Expense tracker services help individuals and businesses manage their finances by recording, categorizing, and analyzing expenditures. These services typically include features like automated transaction tracking, budget setting, expense categorization, and real-time spending insights. Many expense trackers integrate with bank accounts and credit cards to provide seamless tracking and generate detailed reports on financial habits. Users can set spending limits, receive alerts for overspending, and access visual analytics like charts and graphs to monitor cash flow. Some advanced trackers also offer AI-driven financial recommendations, bill reminders, and multi-user collaboration for shared expenses. These tools ultimately help users gain better financial control, reduce unnecessary expenses, and achieve savings goals.')">Details</button>
+                <button class="button" onclick="openForm('Expense Tracker', 1500)">Buy Now</button>
+            </div>
+        </div>
+        <div class="tool">
+            <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1560518883-ce09059eeffa.jpeg" alt="Goal Setter">
+            <h2>Rs. 1300<br>Goal Setter</h2>
+            <p>Set and achieve your financial goals efficiently and smartly.</p>
+            <div class="button-container">
+                <button class="button" onclick="openDetails('Goal Setter', 'Goal setter services provide structured guidance and tools to help individuals or organizations define, track, and achieve their objectives efficiently. These services often include goal planning frameworks, progress tracking dashboards, reminders, and analytics to measure achievements. Many goal-setting platforms offer personalized coaching, habit-building techniques, and integration with productivity apps to keep users motivated. Some services focus on personal development, such as fitness or financial goals, while others cater to professional growth, helping businesses set and monitor performance benchmarks. Additionally, AI-driven insights and community support features enhance accountability, ensuring users stay on track toward their aspirations.')">Details</button>
+                <button class="button" onclick="openForm('Goal Setter', 1300)">Buy Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openForm(product, price) {
+            const url = `buynow.html?product=${encodeURIComponent(product)}&price=${price}`;
+            window.open(url, '_blank');
+        }
+
+        function openDetails(product, description) {
+            const url = `details.html?product=${encodeURIComponent(product)}&description=${encodeURIComponent(description)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+   </script>
+   <h1>About this Page </h1>
+   <p style = "text-align:center">Welcome to our Financial Tools Marketplace, where we offer powerful solutions to help you manage your money effortlessly. Whether you're looking to plan your budget, track expenses, or set financial goals, we have the right tools for you! <br><br>
+       Budget Planner (Rs. 5000): Helps you allocate your funds wisely and reduce financial stress.<br>
+       Expense Tracker (Rs. 1500): Monitors your spending habits and keeps you on track.<br>
+       Goal Setter (Rs. 1300): Assists in setting and achieving your financial goals efficiently.<br><br>
+       Simply click the "Buy Now" button to purchase your preferred tool and fill in the quick form to get started. Take control of your finances today! </p>
+       <p style="background-color:grey; text-align: center; padding: 15px;">© 2025 Personal Finance Dashboard. All rights reserved.</p>
+</body>
+</html>

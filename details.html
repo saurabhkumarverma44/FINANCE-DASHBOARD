@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analytics Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            color: white;
+            background-color: black;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        ::-webkit-scrollbar /*chrome,safari,edge*/
+            {
+                display: none;
+            }
+            html /*firefox*/
+            {
+                scrollbar-width: none;
+            }
+            body /*for ie and edge*/
+            {
+                -ms-overflow-style: none;
+            }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.2);
+        }
+        .chart-container {
+            display: none;
+            margin-top: 20px;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c9302c;
+        }
+        h2 {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📊 Business Analytics Dashboard</h1>
+
+    <div class="container">
+        <label for="dataSelection"><strong>Select Data:</strong></label>
+        <select id="dataSelection" onchange="updateContent()">
+            <option value="expenses">📉 Expenses</option>
+            <option value="budget">💰 Budget</option>
+            <option value="goals">🎯 Goals</option>
+        </select>
+
+        <div id="textContent">
+            <h2>📉 Expenses Overview</h2>
+            <p>Tracking your expenses helps you identify unnecessary spending and manage your financial health effectively.</p>
+        </div>
+
+        <div class="chart-container" id="chartContainer">
+            <canvas id="dataChart"></canvas>
+        </div>
+
+        <button onclick="closeDashboard()">Close</button>
+    </div>
+
+    <script>
+        let chartInstance;
+
+        function updateContent() {
+            const selection = document.getElementById("dataSelection").value;
+            const textContent = document.getElementById("textContent");
+            const chartContainer = document.getElementById("chartContainer");
+            const ctx = document.getElementById("dataChart").getContext("2d");
+
+            let labels, data, backgroundColors, title, description;
+
+            if (selection === "expenses") {
+                title = "📉 Expenses Overview";
+                description = "An expenses setter is a financial management approach focused on tracking, categorizing, and controlling expenditures. It involves recording all expenses, from fixed costs like rent and insurance to variable costs like groceries and transportation. Understanding spending patterns helps identify unnecessary expenditures and cut costs where possible. By analyzing financial habits, individuals can make adjustments to ensure their spending aligns with their financial goals. This approach promotes responsible money management, prevents overspending, and allows better allocation of resources. An expenses setter also helps in identifying financial leaks, optimizing budgets, and creating a more structured approach to managing personal or household finances.";
+                labels = ["Rent", "Food", "Transport", "Entertainment", "Utilities"];
+                data = [1000, 500, 200, 300, 150];
+                backgroundColors = ["#e74c3c", "#3498db", "#2ecc71", "#f1c40f", "#9b59b6"];
+            } 
+            else if (selection === "budget") {
+                title = "💰 Budget Tracker";
+                description = "A budget is a financial plan that organizes income, expenses, savings, and investments to maintain financial stability. It provides a structured approach to money management, ensuring that earnings are allocated efficiently. A budget typically includes necessary expenses like rent, food, and utilities, savings for future needs, and discretionary spending for entertainment. Budgeting helps individuals avoid unnecessary debt, track progress toward financial goals, and create a balance between income and expenses. By regularly reviewing and adjusting a budget, financial decisions become more informed and strategic. A well-planned budget is essential for achieving financial security, reducing financial stress, and building wealth.";
+                labels = ["Income", "Savings", "Expenses"];
+                data = [5000, 1500, 3500];
+                backgroundColors = ["#2ecc71", "#3498db", "#e74c3c"];
+            } 
+            else {
+                title = "🎯 Financial Goals";
+                description = "A goal setter is a strategy for defining financial objectives and creating a plan to achieve them. It involves setting specific, measurable, achievable, relevant, and time-bound (SMART) financial goals, such as saving for a house, reducing debt, or building wealth. Establishing goals provides motivation, clarity, and direction for financial decision-making. Regularly tracking progress, adjusting strategies, and staying disciplined help individuals remain focused. Whether short-term, like saving for a vacation, or long-term, like retirement planning, goal setting ensures financial stability. By prioritizing goals based on importance and feasibility, individuals can make informed financial choices and work towards financial success.";
+                labels = ["Emergency Fund", "Vacation", "Investments", "Education"];
+                data = [2000, 1000, 5000, 3000];
+                backgroundColors = ["#e67e22", "#8e44ad", "#16a085", "#c0392b"];
+            }
+
+            textContent.innerHTML = `<h2>${title}</h2><p>${description}</p>`;
+            chartContainer.style.display = "block";
+
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            chartInstance = new Chart(ctx, {
+    type: "bar",
+    data: {
+        labels: labels,
+        datasets: [{
+            label: title,
+            data: data,
+            backgroundColor: backgroundColors,
+            borderColor: "white", 
+            borderWidth: 2 
+        }]
+    },
+    options: {
+        scales: {
+            x: {
+                grid: {
+                    color: "grey" 
+                }
+            },
+            y: {
+                grid: {
+                    color: "grey" 
+                }
+            }
+        }
+    }
+});
+
+        }
+        function closeDashboard() {
+            window.location.href = "http://127.0.0.1:5501/services.html";
+        }
+        updateContent();
+    </script>
+<p style="background-color:grey; text-align: center; padding: 15px;">© 2025 Personal Finance Dashboard. All rights reserved.</p>
+</body>
+</html>

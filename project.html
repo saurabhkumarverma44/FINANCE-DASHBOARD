@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Personal Finance Dashboard</title>
+        <style>
+            body 
+            {
+                background-color: black;
+                background-attachment: fixed;
+                font-family: times 'Times New Roman', Times, serif;
+                color: white;
+            }
+            ::-webkit-scrollbar /*chrome,safari,edge*/
+            {
+                display: none;
+            }
+            html /*firefox*/
+            {
+                scrollbar-width: none;
+            }
+            body /*for ie and edge*/
+            {
+                -ms-overflow-style: none;
+            }
+            .container 
+            {
+                display: flex; 
+                align-items: center; 
+                gap: 25px;
+            }
+            .small-image 
+            {
+                height: 40px; 
+                width: 75px; 
+                border-radius: 15px;
+            }
+            .large-image 
+            {
+                border-radius: 25px;
+                opacity: 0.30;
+                width: 120%;
+                margin-left: 30px;
+                margin-right: 10px;
+                display: block;
+                margin-top: 10px;
+            }
+            .image-text
+            {
+                position: absolute;
+                top: 10%; 
+                left: 785px;
+                color: white;
+                font-size: 20px;
+            }
+            .image-heading
+            {
+                position: absolute;
+                top: 30%;
+                color: white;
+                margin-left:340px;
+                font-size: 120px;
+            }
+            .image-wrapper 
+            {
+                position: relative;
+                width: 80%;
+            }
+            .info
+            {
+                position: absolute;
+                bottom: 20%; 
+                left: 405px;
+                color: white;
+                font-size:35px;
+            }
+            .image
+            {
+                position: absolute;
+                bottom: 20%; 
+                left: 355px;
+                color: white;
+            }
+            .joinnow
+            {
+                position: absolute;
+                text-align: center;
+                background-color:white;
+                color:grey;
+                border: 2px solid black;
+                padding: 15px;
+                border-radius: 30px;
+                bottom: 10%;
+                left: 790px;
+                transition: all 0.3s ease-in-out;
+            }
+            .joinnow:hover, .joinnow:focus
+            {
+                transform: scale(1.1);
+            }
+            .search-box 
+            {
+                padding: 10px;
+                width: 200px;
+                border: 2px solid grey;
+                border-radius: 5px;
+                background: white;
+                color: grey;
+                font-size: 16px;
+                text-align: center;
+                border-radius: 20px;
+                top: 65%;
+                position: absolute;
+                left: 730px;
+                transition: all 0.3s ease-in-out;
+            }
+            .search-box:focus, .search-box:hover 
+            {
+                background: black;
+                color: grey;
+                border: 2px solid grey;
+                transform: scale(1.1);
+            }
+            .box 
+            {
+                width: 45%; 
+                height: 45%;
+                border: 2px solid grey;
+                padding: 10px;
+                margin: 20px ;
+                background: linear-gradient(to top right, black, rgb(58, 58, 58));
+                text-align: center;
+                border-radius: 10px;
+            }
+            .box img 
+            {
+                max-width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+            .box p 
+            {
+                text-align: left;
+            }
+            .budget
+            {
+                text-align: center;
+                background-color:white;
+                color:grey;
+                border: 2px solid grey;
+                padding: 5px;
+                border-radius: 30px;
+                min-width: 150px;
+                display: flex;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+                align-items: center;
+                justify-content: center;
+            }
+            .budget:hover, .budget:focus 
+            {
+                background-color: grey;
+                color: white;
+                transform: scale(1.1);
+                border: 2px solid white;
+            }
+            nav 
+            {
+                width: 35%;
+                margin-left: auto;
+            }
+            nav ul 
+            {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+            nav ul li 
+            {
+                flex: 1;
+                text-align: center;
+            }
+            nav ul li a 
+            {
+                display: block;
+                padding: 15px;
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+            nav ul li a:hover, nav ul li a:focus
+            {
+                background-color: #555;
+            }
+            .container2
+            {
+                display: flex; 
+                align-items: center; 
+                gap: 32px;
+            }
+            .container3
+            {
+                display: flex; 
+                align-items: center; 
+                gap: 25px;
+            }
+            .thirdphoto
+            {
+                width: 120%; 
+                height: 45%;
+                border: 0.5px solid grey;
+                padding: 10px;
+                margin: 20px ;
+                background: linear-gradient(to top right, black, rgb(58, 58, 58));
+                border-radius: 10px;
+                text-align:center;
+            }
+            .plans
+            {
+                display: flex; 
+                align-items: center; 
+                gap: 25px;
+                justify-content: center;
+            }
+            .fortext
+            {
+                display: flex; 
+                justify-content:center;
+                gap:80px;
+                text-align: left;
+            }
+            .button-container 
+            {
+                display: flex;
+                justify-content: flex-end; 
+                gap: 10px; 
+                margin-top: 10px;
+            }
+            .insidebox
+            {
+                display: flex; 
+                align-items: center; 
+                gap: 25px;
+            }
+            .animated-photo:focus
+            {
+                transition: all 0.3s ease-in-out;
+            }
+            .animated-photo:hover, .animated-photo:focus
+            {
+                transform: scale(1.1);
+            }
+            .buynow
+            {
+                text-align: center;
+                background-color:white;
+                color:grey;
+                border: 1px solid grey;
+                padding: 5px;
+                display: inline-block;
+                border-radius: 30px;
+                transition: all 0.3s ease-in-out;
+            }
+            .buynow:hover, .buynow:focus
+            {
+                background-color:black;
+                color: white;
+                border: 1px solid white;
+                transform: scale(1.1);
+            }
+            .formtext
+            {
+                display: flex; 
+                justify-content:center;
+                gap:240px;
+                text-align: left;
+            }
+            .imagehead
+            {
+                position: absolute;
+                top: 30%;
+                color: white;
+                margin-left:285px;
+                font-size: 120px;
+            }
+            .texted
+            {
+                position: absolute;
+                bottom: 20%; 
+                left: 430px;
+                color: white;
+            }
+            .map-container 
+            {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                flex-wrap: wrap;
+                margin-top: 20px;
+                align-items: center;
+            }
+            .map-box 
+            {
+                width: 45%;
+                height: 446px;
+            }
+            #map 
+            {
+                height: 450px;
+                width: 100%;
+            }
+            #answer1
+            {
+                display: none;
+            }
+            #answer2
+            {
+                display: none;
+            }
+            #answer3
+            {
+                display: none;
+            }
+            #answer4
+            {
+                display: none;
+            }
+            #answer5
+            {
+                display: none;
+            }
+            .questions
+            {
+                display:flex;
+                justify-content: center;
+                gap: 25px;
+                align-items:center;
+            }
+        </style>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1520607162513-77705c0f0d4a.jpeg" class="small-image">
+            <h3>Finance</h3>
+            <nav>
+                <ul>
+                    <li><a href="http://127.0.0.1:5501/project.html">Home</a></li>
+                    <li><a href="http://127.0.0.1:5501/about.html">About</a></li>
+                    <li><a href="http://127.0.0.1:5501/services.html">Services</a></li>
+                    <li><a href="http://127.0.0.1:5501/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="image-wrapper">
+            <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1507679799987-c73779587ccf.jpeg" class="large-image">
+            <div class="image-text">Welcome Aboard</div>
+            <h1 class="image-heading">Master Your Money</h1>
+            <p class="info"><b>Personal Finance Dashboard: Budget, Expenses, and Goals</b></p>
+            <div class="image">Dive into the world of personal finance with our dashboard. It's time to take control of your budget, track your expenses, and smash those financial goals!</div>
+            <a href ="http://127.0.0.1:5501/signin.html" class="joinnow">Join Now</a>
+            <input type="text" class="search-box" placeholder="Search...">
+        </div>
+        <br>
+        <marquee style="background-color: grey; color:white; font-size: 20px; padding: 10px">WORK WITHOUT CARING ABOUT TIME. MONEY IS IMPORTMENT.</marquee>
+        <div class="container2">
+        <div class="box">
+            <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1435575653489-b0873ec954e2.jpeg" alt="img-1">
+            <div class="insidebox">
+                <p style="font-size:35px"><b>Budget Planning</b></p>
+                <p>Plan your budget effictively to manage your finances. <br>No more living paycheck to paycheck! <br>Get your financial life in order and start saving for that dream vacation!</p>
+                <div class="button-container">
+                    <p class="budget">Budgeting Tips</p>
+                    <p class="budget">Expense Hacks</p>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1486406146926-c627a92ad1ab.jpeg" alt="img-1">
+            <div class="insidebox">
+                <p style="font-size:35px"><b>Expense Tracking</b></p>
+                <p>Track your daily expenses to stay within budget. <br>Because who needs surprises when it comes to money?<br>Keep your spending in check and enjoy guilt-free treats!</p>
+                <div class="button-container">
+                    <p class="budget">Goal Setting</p>
+                    <p class="budget">Expense Tracking</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="container3">
+            <div class="thirdphoto">
+                <h1 style="text-align: center; font-size:80px;">Our Tools</h1>
+                <div class="plans">
+                    <div class = "animated-photo">
+                    <img src = "https://r.mobirisesite.com/1184121/assets/images/photo-1531482615713-2afd69097998.jpeg"height="350px" width="500" style = "border: 2px solid white; border-radius: 20px">
+                    </div>
+                    <div class = "animated-photo">
+                    <img src = "https://r.mobirisesite.com/1184121/assets/images/photo-1579621970588-a35d0e7ab9b6.jpeg"height="350px" width="500" style = "border: 2px solid white; border-radius: 20px">
+                    </div>
+                    <div class = "animated-photo">
+                    <img src = "https://r.mobirisesite.com/1184121/assets/images/photo-1560518883-ce09059eeffa.jpeg"height="350px" width="500" style = "border: 2px solid white; border-radius: 20px">               
+                    </div>
+                </div>
+                <div class="fortext">
+                    <h1>Rs. 5000 <br> Budget Planner <br> 
+                        <p style="font-size: 20px; font-weight: normal">
+                            A powerful tool to help you plan your budget like a pro. <br>Say goodbye to financial stress!
+                        </p> 
+                        <a href="services.html">
+                            <div class="buynow" style="font-size: 15px; font-weight: normal; cursor: pointer;">Buy Now</div>
+                        </a>
+                    </h1>
+                    <h1>Rs. 1500 <br> Expense Tracker <br> 
+                        <p style="font-size: 20px; font-weight: normal">
+                            Keep tabs on your spending with our easy-to-use tracker. <br>No more mystery expenses!
+                        </p> 
+                        <a href="services.html">
+                            <div class="buynow" style="font-size: 15px; font-weight: normal; cursor: pointer;">Buy Now</div>
+                        </a>
+                    </h1>
+                    <h1>Rs. 1300 <br> Goal Setter <br> 
+                        <p style="font-size: 20px; font-weight: normal">
+                            Set and achieve your financial goals efficiently. <br>Make your money work for you!
+                        </p> 
+                        <a href="services.html">
+                            <div class="buynow" style="font-size: 15px; font-weight: normal; cursor: pointer;">Buy Now</div>
+                        </a>
+                    </h1>
+                </div>                
+            </div>
+        </div>
+        <div class="container3">
+            <div class="thirdphoto">
+                <h4>Join Us</h4>
+                <h1 style="font-size:70px">Take Control of Your Finances</h1>
+                <h4>Don't wait! Start your journey to financial freedom today!</h4>
+                <img src = "https://r.mobirisesite.com/1184121/assets/images/photo-1591696205602-2f950c417cb9.jpeg" width="800px" height="400px" style="border-radius: 20px; border: 1px solid grey">
+                <br><br><br>
+                <a href = "http://127.0.0.1:5501/signin.html" class="buynow" style="font-size: 20px; font-weight: normal; padding:7px">Sign Up</a><br><br>
+            </div>
+        </div>
+        <div class="container3">
+            <div class="thirdphoto">
+                <p>Latest News</p>
+                <h1 style="text-align: center; font-size:80px;">Finance Insights</h1>
+                <p>Stay updated with the latest trends in personal finance. Knowledge is power, and we are here to empower you!</p><br>
+                <div class="plans">
+                    <img src = "https://r.mobirisesite.com/1184121/assets/images/photo-1628348068343-c6a848d2b6dd.jpeg"height="350px" width="500" style = "border: 2px solid white; border-radius: 20px">
+                    <img src = "https://r.mobirisesite.com/1184121/assets/images/photo-1444653614773-995cb1ef9efa.jpeg"height="350px" width="500" style = "border: 2px solid white; border-radius: 20px">
+                    <img src = "https://r.mobirisesite.com/1184121/assets/images/photo-1554224154-26032ffc0d07.jpeg"height="350px" width="500" style = "border: 2px solid white; border-radius: 20px">               
+                </div>
+                <div class="formtext">
+                    <h1>Budgeting Basics<br> <p style="font-size: 20px; font-weight: normal">Get started today!</h1>
+                    <h1>Expense Management Tips<br> <p style="font-size: 20px; font-weight: normal">Save more, stress less!</h1>
+                    <h1>Achieving Financial Goals<br> <p style="font-size: 20px; font-weight: normal">Make your dreams reality!</h1>
+                </div>
+            </div>
+        </div>
+        <marquee style="background-color:grey; color:white; font-size: 20px; padding: 10px">BUDEGTING MADE EASY AND FUN!* TRACK EXPENSES LIKE A PRO!*</marquee>
+        <div class="container3">
+            <div class="thirdphoto">
+                <h4>Get Started</h4>
+                <h1 style="font-size:70px">Your Financial Journey</h1>
+                <p>Achieve Goals</p>
+                <h1>Plan your budget like a Boss!</h1>
+                <p>Achieve Goals</p>
+                <h1>Track expenses without the headache!</h1>
+                <p>Achieve Goals</p>
+                <h1>Set goals and crush them!</h1>
+            </div>
+        </div>
+        <div class="image-wrapper">
+            <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1544377193-33dcf4d68fb5.jpeg" class="large-image">
+            <h1 class="imagehead">Master Your Finance</h1>
+            <div class="texted">Take control of your money with our personal finance dashboard. Budget, track expenses, and achieve your financial dreams!</div>
+            <a href = "http://127.0.0.1:5501/signin.html" class="joinnow">Get Started</a>
+        </div>
+        <div class="container2">
+            <div class="box">
+                <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1529400971008-f566de0e6dfc.jpeg" alt="image-5">
+                <div class="insidebox">
+                    <p style="font-size:35px; color:white;"><b>Plan Your Budget</b></p>
+                    <p style="color:white">Manage your finances like a pro!</p>
+                    <div class="button-container">
+                        <p class="budget">Budget Planning</p>
+                        <p class="budget">Expense Tracking</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1565514158740-064f34bd6cfd.jpeg" alt="img-1">
+                <div class="insidebox">
+                    <p style="font-size:35px; color:white;"><b>Track Expenses</b></p>
+                    <p style="color:white">Stay within budget and avoid financial hangovers.</p>
+                    <div class="button-container">
+                        <p class="budget">Financial Goals</p>
+                        <p class="budget">Smart Savings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <marquee style="background-color:grey; color:white; font-size: 20px; padding: 10px">Your Ultimate Companion for Conquering Personal Finance like a Pro!</marquee>
+        <div class="container2">
+            <div class="box">
+                <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1569025690938-a00729c9e1f9.jpeg" alt="image-5">
+                <div class="insidebox">
+                    <p style="font-size:35px; color:white;"><b>Financial Goals</b></p>
+                    <p style="color:white">Achieve your dreams without breaking the bank!</p>
+                    <div class="button-container">
+                        <p class="budget">Investment Insights</p>
+                        <p class="budget">Debt Management</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1579621970795-87facc2f976d.jpeg" alt="img-1">
+                <div class="insidebox">
+                    <p style="font-size:35px; color:white;"><b>Save Smartly</b></p>
+                    <p style="color:white">Make your money work harder for you!</p>
+                    <div class="button-container">
+                        <p class="budget">Savings Strategies</p>
+                        <p class="budget">Wealth Building</p>
+                    </div>
+                </div>
+            </div>
+        </div> <br><br>
+        <p style="text-align:center">Find Us</p>
+        <h1 style="font-size:80px; text-align:center">📍Our Location</h1>
+        <div class="map-container">
+            <div class="map-box">
+                <h3 style="text-align:center">Google Maps</h3>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.529139442168!2d80.15104687507415!3d12.840839717350874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525de5c0035a77%3A0x4b93e2326b68791f!2sVIT%20Chennai!5e0!3m2!1sen!2sin!4v1708000000000"
+                    width="100%" 
+                    height="100%" 
+                    loading="lazy">
+                </iframe>
+            </div>
+            <div class="map-box">
+                <h3 style="text-align:center">Open Street Map</h3>
+                <div id="map"></div>
+            </div>
+        </div>
+        <script>
+            var map = L.map('map').setView([12.8419, 80.1531], 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+            {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+            L.marker([12.8419, 80.1531]).addTo(map)
+            .bindPopup('<b>VIT Chennai</b><br>Vandalur - Kelambakkam Road, Chennai.')
+            .openPopup();
+        </script>
+        <br><br><br><br>
+        <p style="font-size:15px; text-align:center">FAQs</p>
+        <p style="font-size:60px; text-align:center; font-weight: strong">Got Questions?</p>
+        <button id="toggleAnswerBtn" style="display:flex; justify-content:center; font-size:15px; padding:10px; border-radius:20px; text-align:center">Get Answers to the Frequently asked Questions...</button> 
+        <br>
+        <div class="questions">
+        <h1>How do I start budgeting? </h1>
+        <p id="answer1">Simply sign up, and our dashboard will guide you through budgeting like a boss!</p>
+        <script>
+            document.getElementById("toggleAnswerBtn").addEventListener("click", function()
+            {
+            const answer = document.getElementById("answer1");
+            if (answer1.style.display === "none"|| answer1.style.display === "") {
+            answer1.style.display = "block";
+            this.textContent = "x";
+            }
+            else
+            {
+            answer1.style.display = "none";
+            this.textContent = "Get answers to the Frequently asked Questions...";
+            }
+            });
+        </script>
+        <h1>Can I track my expenses?</h1>
+        <p id="answer2">Absolutely! Our tool makes tracking expenses as easy as pie!</p>
+        <script>
+            document.getElementById("toggleAnswerBtn").addEventListener("click", function()
+            {
+            const answer = document.getElementById("answer2");
+            if (answer2.style.display === "none"|| answer2.style.display === "") {
+            answer2.style.display = "block";
+            this.textContent = "x";
+            }
+            else
+            {
+            answer2.style.display = "none";
+            this.textContent = "Get answers to the Frequently asked Questions...";
+            }
+            });
+        </script>
+        <h1>What if I have debt?</h1>
+        <p id="answer3">No worries! We have strategies to help you tackle that debt monster!</p>
+        <script>
+            document.getElementById("toggleAnswerBtn").addEventListener("click", function()
+            {
+            const answer = document.getElementById("answer3");
+            if (answer3.style.display === "none"|| answer3.style.display === "") {
+            answer3.style.display = "block";
+            this.textContent = "x";
+            }
+            else
+            {
+            answer3.style.display = "none";
+            this.textContent = "Get answers to the Frequently asked Questions...";
+            }
+            });
+        </script>
+        <h1>Are my goals achievable?</h1>
+        <p id="answer4">With our tools, your financial goals are not just dreams—they're plans!</p>
+        <script>
+            document.getElementById("toggleAnswerBtn").addEventListener("click", function()
+            {
+            const answer = document.getElementById("answer4");
+            if (answer4.style.display === "none"|| answer4.style.display === "") {
+            answer4.style.display = "block";
+            this.textContent = "x";
+            }
+            else
+            {
+            answer4.style.display = "none";
+            this.textContent = "Get answers to the Frequently asked Questions...";
+            }
+            });
+        </script>
+        <h1>Is this really free?</h1>
+        <p id="answer5">Yes! Our basic features are free, because we love you!</p>
+        <script>
+            document.getElementById("toggleAnswerBtn").addEventListener("click", function()
+            {
+            const answer = document.getElementById("answer5");
+            if (answer5.style.display === "none"|| answer5.style.display === "") {
+            answer5.style.display = "block";
+            this.textContent = "x";
+            }
+            else
+            {
+            answer5.style.display = "none";
+            this.textContent = "Get answers to the Frequently asked Questions...";
+            }
+            });
+        </script>
+        </div>
+        <div class="container2">
+            <div class="box">
+                <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1434626881859-194d67b2b86f.png">
+                <div class="insidebox">
+                    <p style="font-size:35px; color:white;"><b>Set Financial Goals</b></p>
+                    <p style="color:white">Dream big and achieve bigger! Set your financial goals and watch as we help you crush them like a boss!</p>
+                    <div class="button-container">
+                        <p class="budget">Planning</p>
+                        <p class="budget">Success</p>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1600880292203-757bb62b4baf.jpeg">
+                <div class="insidebox">
+                    <p style="font-size:35px; color:white;"><b>Achieve Your Dreams</b></p>
+                    <p style="color:white">Your dreams are just a budget away. Let’s make them happen together!</p>
+                    <div class="button-container">
+                        <p class="budget">Motivation</p>
+                        <p class="budget">Success</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <p style="background-color:grey; text-align: center; padding: 15px">© 2025 Personal Finance Dashboard. All rights reserved.</p>
+    </body>
+</html>

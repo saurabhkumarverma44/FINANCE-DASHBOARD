@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact</title>
+<style>
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: black;
+  color: white;
+}
+.container {
+  display: flex; 
+  align-items: center; 
+  gap: 25px;
+}
+.small-image {
+  height: 40px; 
+  width: 75px; 
+  border-radius: 15px;
+}
+nav {
+  overflow: hidden;
+  width: 35%;
+  margin-left: auto;
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+nav ul li {
+  flex: 1;
+  text-align: center;
+}
+nav ul li a {
+  display: block;
+  padding: 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+nav ul li a:hover, nav ul li a:focus {
+  background-color: #555;
+}
+.container2 {
+  display: flex; 
+  align-items: flex-start; 
+  justify-content: space-between;
+  max-width: 80%;
+  margin: auto;
+  gap: 80px;
+}
+.animated-button 
+{
+padding: 10px;
+background-color: #333;
+color: white;
+border: 1px solid grey;
+border-radius: 7px;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+.animated-button:hover, .animated-button:focus
+{
+background-color: #45a049;
+transform: scale(1.1);
+}
+.info-section {
+  flex: 1;
+}
+.contact-form {
+  flex: 1;
+}
+.error {
+  color: red;
+  font-size: 16px;
+  margin-top: 5px;
+  display: block;
+
+}
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+</style>
+<script>
+  function validateForm(event) 
+  {
+      event.preventDefault(); 
+      let valid = true;
+    function showError(id, message) 
+    {
+        let errorElement = document.getElementById(id);
+        errorElement.textContent = message;
+    }
+    function clearError(id) 
+    {
+        document.getElementById(id).textContent = "";
+    }
+    let fname = document.getElementById("fname").value.trim();
+    let lname = document.getElementById("lname").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let message = document.getElementById("message").value.trim();
+    if (fname === "") 
+    {
+        showError("fnameError", "First Name is required.");
+        valid = false;
+    } 
+    else 
+    {
+        clearError("fnameError");
+    }
+    if (lname === "") 
+    {
+        showError("lnameError", "Last Name is required.");
+        valid = false;
+    } 
+    else 
+    {
+        clearError("lnameError");
+    }
+    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (email === "") 
+    {
+        showError("emailError", "Email is required.");
+        valid = false;
+    } else if (!emailPattern.test(email)) 
+    {
+        showError("emailError", "Please enter a valid email address.");
+        valid = false;
+    } 
+    else 
+    {
+        clearError("emailError");
+    }
+    if (message === "") 
+    {
+        showError("messageError", "Message cannot be empty.");
+        valid = false;
+    } 
+    else 
+    {
+        clearError("messageError");
+    }
+    if (valid) 
+    {
+        alert("✅ Form submitted successfully!");
+        document.getElementById("contactForm").reset();
+    }
+}
+  </script>
+</head>
+<body>
+<div class="container">
+    <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1520607162513-77705c0f0d4a.jpeg" class="small-image">
+    <h3>Finance</h3>
+    <nav>
+        <ul>
+            <li><a href="http://127.0.0.1:5501/project.html">Home</a></li>
+            <li><a href="http://127.0.0.1:5501/about.html">About</a></li>
+            <li><a href="http://127.0.0.1:5501/services.html">Services</a></li>
+            <li><a href="http://127.0.0.1:5501/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</div>
+<h1 style="text-align: center; font-size:50px">Contact Us</h1>
+<p style="text-align: center; font-size:20px">We would love to hear from you. Reach out to us with your inquiries or feedback!</p>
+<br>
+<div class="container2">
+    <div class="info-section">
+        <h2 style="font-size:40px;">Our Information</h2>
+        <p style="font-size:20px;"><b>Address:</b><br>123, MG Road, Sector 4, Chennai, Tamil Nadu - 600127, India</p>
+        <p style="font-size:20px;"><b>Phone:</b><br>+91 8345678910</p>
+        <p style="font-size:20px;"><b>Email:</b><br>pfdcontact@gmail.com</p>
+        <p style="font-size:20px;"><b>Office Hours:</b><br>Mon-Fri: 9am-5pm | Sat: 10am-1pm | Sun: Holiday</p>
+    </div>
+    <div class="contact-form">
+        <h2 style="font-size:40px;">Send Us a Message</h2>
+        <form id="contactForm" onsubmit="validateForm(event)">
+          <label for="fname" style="font-size:20px;">First Name:</label><br>
+          <input type="text" id="fname" placeholder="Enter your First Name">
+          <span id="fnameError" class="error"></span><br>
+          <label for="lname" style="font-size:20px;">Last Name:</label><br>
+          <input type="text" id="lname" placeholder="Enter your Last Name">
+          <span id="lnameError" class="error"></span><br>
+          <label for="email" style="font-size:20px;">Email:</label><br>
+          <input type="email" id="email" placeholder="Enter your E-Mail ID">
+          <span id="emailError" class="error"></span><br>
+          <label for="message" style="font-size:20px;">Message:</label><br>
+          <textarea id="message" rows="5" placeholder="Enter Message"></textarea>
+          <span id="messageError" class="error"></span><br>
+          <button type="submit" class="animated-button">Submit</button>
+      </form>
+    </div>
+</div>
+<br><br>
+<p style="background-color:grey; text-align: center; padding: 15px;">© 2025 Personal Finance Dashboard. All rights reserved.</p>
+</body>
+</html>

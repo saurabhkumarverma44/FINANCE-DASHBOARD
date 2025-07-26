@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Finance Website</title>
+    <style>
+        body 
+        {
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color:black;
+        }
+        ::-webkit-scrollbar /*chrome,safari,edge*/
+            {
+                display: none;
+            }
+            html /*firefox*/
+            {
+                scrollbar-width: none;
+            }
+            body /*for ie and edge*/
+            {
+                -ms-overflow-style: none;
+            }
+        .container 
+        {
+            background: grey;
+            color:white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .home-btn:hover {
+            background: black;
+        }
+        .container {
+            background: grey;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: center;
+        }
+        input 
+        {
+            width: 100%;
+            max-width: 250px;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 10px 10px 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        button 
+        {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover 
+        {
+            background: #0056b3;
+        }
+        .error 
+        {
+            color: red;
+            font-size: 12px;
+            margin-top: -8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="http://127.0.0.1:5501/project.html" class="home-btn">Home</a>
+    <div class="container">
+        <h2>Welcome to FinancePro</h2>
+        <h2>Create Account</h2>
+        <form id="createAccountForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <p id="nameError" class="error"></p>
+            <input type="email" id="email" placeholder="Email" required>
+            <p id="emailError" class="error"></p>
+            <input type="password" id="password" placeholder="Password" required>
+            <p id="passwordError" class="error"></p>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <p id="errorMessage" class="error"></p>
+            <button type="submit">Sign Up</button>
+            <a href = "http://127.0.0.1:5501/login.html " style="color: blue">Log In</a>
+        </form>
+    </div>
+    <script>
+        document.getElementById("createAccountForm").addEventListener("submit", function(event) 
+        {
+            event.preventDefault();
+    
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+    
+            const nameError = document.getElementById("nameError");
+            const emailError = document.getElementById("emailError");
+            const passwordError = document.getElementById("passwordError");
+            const errorMessage = document.getElementById("errorMessage");
+    
+            nameError.textContent = "";
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            errorMessage.textContent = "";
+    
+            let isValid = true;
+    
+            if (name.trim() === "") 
+            {
+                nameError.textContent = "Name cannot be empty.";
+                isValid = false;
+            }
+    
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) 
+            {
+                emailError.textContent = "Please enter a valid email address.";
+                isValid = false;
+            }
+    
+            const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+            if (!passwordPattern.test(password)) 
+            {
+                passwordError.textContent = "Password must be at least 6 characters, 1 uppercase letter, 1 number, and 1 special character.";
+                isValid = false;
+            }
+    
+            if (password !== confirmPassword) 
+            {
+                errorMessage.textContent = "Passwords do not match.";
+                isValid = false;
+            }
+    
+            if (isValid) 
+            {
+                localStorage.setItem("user", JSON.stringify({ name, email, password }));
+                alert("Account created successfully!");
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+</body>
+</html>

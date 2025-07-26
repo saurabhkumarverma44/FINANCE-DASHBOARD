@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Form</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+        .form-container {
+            background: #333333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            margin: auto;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .form-container input, .form-container button {
+            width: 80%;
+            margin: 5px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #fff;
+            color: black;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #ddd;
+        }
+        .close-btn {
+            background: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .close-btn:hover {
+            background: darkred;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="formTitle">Purchase Form</h1>
+    <div class="form-container">
+        <h2 id="productName"></h2>
+        <h3 id="productPrice"></h3>
+
+        <label>Full Name:</label><br>
+        <input type="text" id="name" placeholder="Enter your full name">
+        <p class="error" id="nameError"></p>
+
+        <label>Email ID:</label><br>
+        <input type="email" id="email" placeholder="Enter your email">
+        <p class="error" id="emailError"></p>
+
+        <label>Phone Number:</label><br>
+        <input type="text" id="phone" placeholder="Enter your phone number">
+        <p class="error" id="phoneError"></p>
+
+        <div id="formFields"></div>
+
+        <button onclick="submitForm()">Submit</button>
+        <button class="close-btn" onclick="window.close()">Close</button>
+    </div>
+
+    <script>
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                product: params.get("product"),
+                price: params.get("price")
+            };
+        }
+
+        function loadForm() {
+            const { product, price } = getQueryParams();
+            document.getElementById('productName').innerText = product;
+            document.getElementById('productPrice').innerText = `Price: Rs. ${price}`;
+            
+            let formFields = document.getElementById('formFields');
+            if (product === "Budget Planner") {
+                formFields.innerHTML = `
+                    <label>Current Money:</label>
+                    <input type="number" id="currentMoney" placeholder="Enter current money"><br>
+                    <label>Savings:</label><br>
+                    <input type="number" id="savings" placeholder="Enter savings amount">
+                `;
+            } else if (product === "Expense Tracker") {
+                formFields.innerHTML = `
+                    <label>Expenses Made:</label>
+                    <input type="number" id="expenses" placeholder="Enter expenses made"><br>
+                    <label>Remaining Amount:</label>
+                    <input type="number" id="remainingAmount" placeholder="Enter remaining amount">
+                `;
+            } else if (product === "Goal Setter") {
+                formFields.innerHTML = `
+                    <label>Goal to Achieve:</label>
+                    <input type="text" id="goal" placeholder="Enter your goal"><br>
+                    <label>Time Given (months):</label>
+                    <input type="number" id="timeGiven" placeholder="Enter time given">
+                `;
+            }
+        }
+
+        function validateForm() {
+            let valid = true;
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+
+            const nameError = document.getElementById("nameError");
+            const emailError = document.getElementById("emailError");
+            const phoneError = document.getElementById("phoneError");
+
+            nameError.textContent = "";
+            emailError.textContent = "";
+            phoneError.textContent = "";
+
+            if (name.length < 3) {
+                nameError.textContent = "Name must be at least 3 characters long.";
+                valid = false;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                emailError.textContent = "Please enter a valid email address.";
+                valid = false;
+            }
+
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                phoneError.textContent = "Phone number must be exactly 10 digits.";
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        function submitForm() {
+            if (!validateForm()) {
+                return;
+            }
+
+            alert("Thank you for your purchase!");
+            window.close();
+        }
+
+        window.onload = loadForm;
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - FinancePro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body 
+        {
+            font-family:'Times New Roman', Times, serif;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .home-btn:hover {
+            background: black;
+        }
+        .container 
+        {
+            background: grey;
+            color:white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            width: 450px;
+        }
+        h2 
+        {
+            margin-bottom: 1rem;
+        }
+        .input-group 
+        {
+            margin-bottom: 1rem;
+            text-align: left;
+            margin-right:22px;
+        }
+        input 
+        {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        .btn 
+        {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .btn:hover 
+        {
+            background: #0056b3;
+        }
+        .error 
+        {
+            color: red;
+            font-size: 14px;
+        }
+        .forgot-password 
+        {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <a href="http://127.0.0.1:5501/project.html" class="home-btn">Home</a>
+    <div class="container">
+        <h2>Log In to FinancePro</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <span class="error" id="emailError"></span>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <span class="error" id="passwordError"></span>
+            </div>
+            <button type="submit" class="btn">Log In</button>
+        </form>
+        <a href="http://127.0.0.1:5501/forgot.html" class="forgot-password">Forgot Password?</a>
+    </div>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) 
+        {
+            event.preventDefault();
+            let valid = true;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const emailError = document.getElementById("emailError");
+            const passwordError = document.getElementById("passwordError");
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailPattern.test(email)) 
+            {
+                emailError.textContent = "Please enter a valid email.";
+                valid = false;
+            }
+            const passwordPattern = /^(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{7,}$/;
+            if (!passwordPattern.test(password)) 
+            {
+                passwordError.textContent = "Password must be at least 7 chars, 1 uppercase letter, and 1 special character.";
+                valid = false;
+            }
+            if (valid) 
+            {
+                alert("Login successful!");
+                window.location.href = "services.html";
+            }
+        });
+    </script>
+</body>
+</html>

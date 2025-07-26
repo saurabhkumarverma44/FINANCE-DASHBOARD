@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <style>
+        body
+        {
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color:black;
+        }
+        ::-webkit-scrollbar /*chrome,safari,edge*/
+            {
+                display: none;
+            }
+            html /*firefox*/
+            {
+                scrollbar-width: none;
+            }
+            body /*for ie and edge*/
+            {
+                -ms-overflow-style: none;
+            }
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .home-btn:hover {
+            background: black;
+        }
+        .container 
+        {
+            background: grey;
+            color:white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        input 
+        {
+            width: 100%;
+            max-width: 250px;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 10px 10px 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        button 
+        {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover, button.focus
+        {
+            background: #0056b3;
+        }
+        .error 
+        {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+    <body>
+        <a href="http://127.0.0.1:5501/project.html" class="home-btn">Home</a>
+        <div class="container">
+            <h2>Forgot Password</h2>
+            <form id="forgotPasswordForm">
+                <div id="step1">
+                    <input type="email" id="email" placeholder="Enter Email" required>
+                    <button type="button" onclick="sendCode()">Send Code</button>
+                </div>
+                <div id="step2" style="display: none;">
+                    <input type="text" id="code" placeholder="Enter Code" required>
+                    <button type="button" onclick="verifyCode()">Verify Code</button>
+                </div>
+                <div id="step3" style="display: none;">
+                    <input type="password" id="newPassword" placeholder="New Password" required>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                    <button type="button" onclick="resetPassword()">Submit</button>
+                </div>
+                <p id="errorMessage" class="error"></p>
+            </form>
+        </div>
+        <script>
+            let generatedCode = "123456";
+            function sendCode() 
+            {
+                const email = document.getElementById("email").value;
+                const errorMessage = document.getElementById("errorMessage");
+                if (!email.includes("@") || !email.includes(".")) 
+                {
+                    errorMessage.textContent = "Invalid email address!";
+                    return;
+                }
+                errorMessage.textContent = "";
+                alert("A verification code has been sent to " + email);
+                document.getElementById("step1").style.display = "none";
+                document.getElementById("step2").style.display = "block";
+            }
+            function verifyCode() 
+            {
+                const code = document.getElementById("code").value;
+                const errorMessage = document.getElementById("errorMessage");
+                if (code !== generatedCode) 
+                {
+                    errorMessage.textContent = "Invalid code! Please check your email.";
+                    return;
+                }
+                errorMessage.textContent = "";
+                document.getElementById("step2").style.display = "none";
+                document.getElementById("step3").style.display = "block";
+            }
+            function resetPassword() 
+            {
+                const newPassword = document.getElementById("newPassword").value;
+                const confirmPassword = document.getElementById("confirmPassword").value;
+                const errorMessage = document.getElementById("errorMessage");
+                if (newPassword.length < 6) 
+                {
+                    errorMessage.textContent = "Password must be at least 6 characters.";
+                    return;
+                }
+                if (newPassword !== confirmPassword) {
+                    errorMessage.textContent = "Passwords do not match!";
+                    return;
+                }
+                errorMessage.textContent = "";
+                alert("Password reset successful!");
+                window.location.href = "http://127.0.0.1:5501/login.html"; 
+            }
+        </script>
+    </body>
+</html>

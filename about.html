@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About</title>
+<style>
+body {
+font-family: 'Times New Roman', Times, serif;
+background-color: black;
+color: white;
+}
+::-webkit-scrollbar /*chrome,safari,edge*/
+            {
+                display: none;
+            }
+            html /*firefox*/
+            {
+                scrollbar-width: none;
+            }
+            body /*for ie and edge*/
+            {
+                -ms-overflow-style: none;
+            }
+            .container 
+            {
+                display: flex; 
+                align-items: center; 
+                gap: 25px;
+            }
+            .small-image 
+            {
+                height: 40px; 
+                width: 75px; 
+                border-radius: 15px;
+            }
+nav {
+width: 35%;
+margin-left: auto;
+}
+nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+}
+nav ul li {
+flex: 1;
+text-align: center;
+}
+nav ul li a {
+display: block;
+padding: 15px;
+color: white;
+text-decoration: none;
+font-size: 16px;
+font-weight: bold;
+transition: background-color 0.3s ease;
+}
+nav ul li a:hover, nav ul li a:focus {
+background-color: #555;
+}
+.container2 
+            {
+                display: flex; 
+                align-items: center; 
+                gap: 25px;
+            }
+            .meettheexperts {
+                display: flex;
+                justify-content: center;
+                width: 85%;
+                margin-left: 125px;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .swiper {
+            width: 100%;
+            padding: 30px 0;
+        }
+        .swiper-slide {
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            height: 150px;
+            padding: 20px;
+        }
+        .swiper-slide img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .role {
+            color: gray;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            color: black;
+        }
+</style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1520607162513-77705c0f0d4a.jpeg" class="small-image">
+        <h3>Finance</h3>
+        <nav>
+            <ul>
+                <li><a href="http://127.0.0.1:5501/project.html">Home</a></li>
+                <li><a href="http://127.0.0.1:5501/about.html">About</a></li>
+                <li><a href="http://127.0.0.1:5501/services.html">Services</a></li>
+                <li><a href="http://127.0.0.1:5501/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <h1 style="text-align: center; font-size:50px">About Us</h1>
+    <p style="text-align: center; font-size:20px">Welcome to the Personal Finance Dashboard, your ultimate tool for managing budgets, tracking expenses, and achieving financial success.</p>
+    <div class="container2">
+        <h1 style="font-size:40px; margin-left:100px">Our Story <br><p style="font-size:20px">Founded with the vision to simplify financial management, <br>our platform helps individuals take control of their money with ease and confidence.</p></h1>
+    <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1620266757065-5814239881fd.jpeg" width=700px height="500px">
+    </div>
+    <h1 style="text-align:center; font-size:40px">Meet Our Team</h1>
+    <p style="text-align: center">Our dedicated financial experts and developers work together to provide you with the best insights and solutions for smart money management.</p>
+    <h3 style="text-align: center">Our Team</h3>
+    <div class="meettheexperts">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1638868939857-11ac407b347a.jpeg" alt="David Wilson">
+                    <div style="font-weight: bold; color: black">David Wilson</div>
+                    <div class="role">Financial Wizard</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1644945570917-1585f682efaa.jpeg" alt="Laura Garcia">
+                    <div style="font-weight: bold; color: black">Laura Garcia</div>
+                    <div class="role">Savings Expert</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1535026406642-530e01750ad7.jpeg" alt="John Smith">
+                    <div style="font-weight: bold; color: black">John Smith</div>
+                    <div class="role">Finance Guru</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1681075401974-907cc62a4373.jpeg" alt="Emily Johnson">
+                    <div style="font-weight: bold; color: black">Emily Johnson</div>
+                    <div class="role">Budgeting Ninja</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1563170423-18f482d82cc8.jpeg" alt="Michael Brown">
+                    <div style="font-weight: bold; color: black">Michael Brown</div>
+                    <div class="role">Expense Tracker</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://r.mobirisesite.com/1184121/assets/images/photo-1525614686090-7a3108e3758e.jpeg" alt="Sarah Davis">
+                    <div style="font-weight: bold; color: black">Sarah Davis</div>
+                    <div class="role">Goal Setter</div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            loop: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                1024: {slidesPerView: 3},
+                768: {slidesPerView: 3},
+                480: {slidesPerView: 1}
+            }
+        });
+    </script>
+    <br><br>
+    <p style="background-color:grey; text-align: center; padding: 15px">© 2025 Personal Finance Dashboard. All rights reserved.</p>
+</body>
+</html>
